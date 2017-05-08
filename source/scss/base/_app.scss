@@ -1,0 +1,82 @@
+// default margin size
+$gap-size: 10px;
+// the height of header
+$header-height: 64px;
+// the height of footer
+$footer-height: 44px;
+$page-toolbar-height: 76px;
+
+html,body {
+    font-family: 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    margin: 0; 
+    padding: 0;
+    min-height: 100%;
+    div{
+        min-height: 0;
+    }
+}
+
+body, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+body {
+  font-size: 15px;
+  line-height: 24px;
+}
+
+* {
+    box-sizing: border-box;
+}
+.wrapper{
+    width: 100%;
+
+    > .header {
+        position: fixed;
+        width: 100%;
+        height: $header-height;
+        top: 0px;
+        z-index: 2;
+    }
+
+    > .footer {
+        position: fixed; /* or static */
+        width: 100%;
+        bottom:0px;
+        height: $footer-height;
+        z-index:2;
+
+        .content{
+            padding: 20px 0;
+        }
+    }
+
+    > .body{
+        padding-top: $header-height;
+        margin-bottom: $footer-height + 20px;
+        position: relative; /* or static */
+        z-index:1;
+    }
+
+}
+
+.content {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 1060px;
+    min-width: 1060px;
+    display: flex;
+}
+
+a {
+  color: #ff4081;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

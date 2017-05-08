@@ -5,6 +5,7 @@ $header-height: 64px;
 // the height of footer
 $footer-height: 44px;
 $page-toolbar-height: 76px;
+$content-width: 1060px;
 
 html,body {
     font-family: 'Roboto', sans-serif;
@@ -67,8 +68,8 @@ body {
     box-sizing: border-box;
     margin: 0 auto;
     padding: 0;
-    max-width: 1060px;
-    min-width: 1060px;
+    max-width: $content-width;
+    min-width: $content-width;
     display: flex;
 }
 

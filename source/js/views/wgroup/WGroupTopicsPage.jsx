@@ -29,8 +29,6 @@ import { saveWGroups, WorkgroupApis } from '../../store/actions/wgroupActions';
 const iconButtonElement = (
   <IconButton
     touch={true}
-    tooltip="more"
-    tooltipPosition="bottom-left"
   >
     <MoreVertIcon color={grey400} />
   </IconButton>
@@ -124,7 +122,7 @@ class WGroupListPage extends React.Component {
               <p style={styles.descr}>are used for general functions and reduce the amount of layering on the screen</p>
             </div>
           </div>
-          <Paper style={{padding: 10}} zDepth={1}>
+          <div style={{padding: 10}}>
             <div style={{display: 'flex'}}>
               <div style={{flexGrow: 1}}>
                 <h3 style={{textAlign:'center'}}>14</h3>
@@ -147,8 +145,8 @@ class WGroupListPage extends React.Component {
               </div>
             </div>
             { expandContent }
-          </Paper>
-          <Tabs style={{ marginTop: 20, backgroundColor: '#fff' }}>
+          </div>
+          <Tabs style={{ marginTop: 10}}>
             <Tab icon={<ActionFlightTakeoff/>}>
               <List style={{marginTop: 0}}>
                 <Subheader style={{lineHeight:'38px'}}>Top 5 Hotest</Subheader>

@@ -23,6 +23,8 @@ import {grey400, darkBlack, lightBlack} from 'material-ui/styles/colors';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
+import FlatButton from 'material-ui/FlatButton';
+import SelectField from 'material-ui/SelectField';
 import AuthConnect from '../../components/AuthConnect';
 import { saveWGroups, WorkgroupApis } from '../../store/actions/wgroupActions';
 
@@ -52,8 +54,19 @@ function getStyles(muiTheme) {
       position: 'relative',
       marginTop: 10,
     },
-    leftPanel: { flex: 1 },
+    topBar: {
+      display: 'flex',
+      position: 'relative',
+    },
+    filter: {
+      marginRight: baseTheme.spacing.desktopGutterLess,
+    },
+    leftPanel: { 
+      flex: 1 ,
+      paddingRight: 10
+    },
     rightPanel: {
+      paddingLeft:10,
       flexGrow: 0,
       flexShrink: 0,
       flexBasis: 300,
@@ -112,7 +125,38 @@ class WGroupListPage extends React.Component {
     return (
       <div style={ styles.root }>
         <div style={styles.leftPanel}>
-          
+          <div style={styles.topBar}>
+            <SelectField value={this.state.value} onChange={this.handleChange} style={{ width:150, marginRight: 10}}>
+              <MenuItem value={1} label="5 am - 12 pm" primaryText="Morning" />
+              <MenuItem value={2} label="12 pm - 5 pm" primaryText="Afternoon" />
+              <MenuItem value={3} label="5 pm - 9 pm" primaryText="Evening" />
+              <MenuItem value={4} label="9 pm - 5 am" primaryText="Night" />
+            </SelectField>
+                <FlatButton label="Default" style={{ marginRight: 10}} />
+                <FlatButton label="Primary" primary={true} style={{ backgroundColor: grey400, marginRight: 10}}/>
+                <FlatButton label="Secondary" secondary={true} />
+          </div>
+          <Table>
+            <TableHeader adjustForCheckbox={ false } enableSelectAll={ false } displaySelectAll={ false }>
+              <TableRow>
+                <TableHeaderColumn>ID</TableHeaderColumn>
+                <TableHeaderColumn>Name</TableHeaderColumn>
+                <TableHeaderColumn>Status</TableHeaderColumn>
+              </TableRow>
+            </TableHeader>
+            <TableBody displayRowCheckbox={ false }>
+              <TableRow>
+                <TableRowColumn>1</TableRowColumn>
+                <TableRowColumn>John Smith</TableRowColumn>
+                <TableRowColumn>Employed</TableRowColumn>
+              </TableRow>
+              <TableRow>
+                <TableRowColumn>2</TableRowColumn>
+                <TableRowColumn>Randal White</TableRowColumn>
+                <TableRowColumn>Unemployed</TableRowColumn>
+              </TableRow>
+            </TableBody>
+          </Table>
         </div>
         <div style={styles.rightPanel}>
           <div style={{ display: 'flex'}}>

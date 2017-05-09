@@ -50,8 +50,8 @@ class App extends Component {
     if(this.pageContent && this.pageBody){
       let bodyHeight = this.pageBody.offsetHeight;
       let contentHeight = this.pageContent.offsetHeight;
-      if( outerHeight > contentHeight + 108)
-        this.pageBody.style.height = (outerHeight - 108)+'px';
+      console.log(outerHeight + '/' + bodyHeight + '/' + contentHeight);
+      this.pageBody.style.minHeight = (outerHeight - 60)+'px';
     }
   }
   componentDidUpdate = () => {

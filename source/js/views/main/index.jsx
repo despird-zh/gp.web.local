@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import Throttle from 'lodash.throttle';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -33,18 +33,25 @@ class App extends Component {
   constructor(props) {
     super(props);
   }
-  setWrapperRef = (el) => {
-    this.wrapper = el;
+  setPageContentRef = (el) => {
+    this.pageContent = el;
   }
   setPageBodyRef = (el) => {
     this.pageBody = el;
   }
+
   resetPageBodyHeight = () => {
-    if(this.wrapper && this.pageBody){
+    let w = window;
+    let d = document;
+    let documentElement = d.documentElement;
+    let body = d.getElementsByTagName('body')[0];
+    let outerHeight = w.innerHeight|| documentElement.clientHeight|| body.clientHeight;
+    
+    if(this.pageContent && this.pageBody){
       let bodyHeight = this.pageBody.offsetHeight;
-      let wrapperHeight = this.wrapper.offsetHeight;
-      if( wrapperHeight > bodyHeight + 108)
-        this.pageBody.style.height = (wrapperHeight - 108)+'px';
+      let contentHeight = this.pageContent.offsetHeight;
+      if( outerHeight > contentHeight + 108)
+        this.pageBody.style.height = (outerHeight - 108)+'px';
     }
   }
   componentDidUpdate = () => {
@@ -52,17 +59,23 @@ class App extends Component {
   }
   componentDidMount = () => {
     this.resetPageBodyHeight();
+    this.resizeThrottle = Throttle(this.resetPageBodyHeight, 200);
+    window.addEventListener("resize", this.resizeThrottle);
+  }
+  componentWillUnmount= () => {
+    window.removeEventListener("resize", this.resizeThrottle);
   }
 
   render() {
+
     return (
       <MuiThemeProvider muiTheme={ rootTheme }>
-        <div ref={ this.setWrapperRef } className='wrapper'>
+        <div className='wrapper'>
           <Paper style={ styles.header } className='header'>
             <HeaderBar />
           </Paper>
           <div ref= { this.setPageBodyRef } className='body'>
-            <div className='content'>
+            <div ref={ this.setPageContentRef } className='content'>
               {this.props.children}
             </div>
             <SigninDialog />

@@ -4,7 +4,7 @@ export default class FooterBar extends React.Component {
 
   render() {
     return (
-      <div className='content'>
+      <div style= {this.props.style} className='content'>
         1dp
       </div>
     );

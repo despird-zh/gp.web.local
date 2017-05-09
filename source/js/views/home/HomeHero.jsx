@@ -125,7 +125,7 @@ class HomeHero extends Component {
 HomeHero.propTypes = {
   authenticated: PropTypes.bool,
   openSignin: PropTypes.func,
-  width: PropTypes.int,
+  width: PropTypes.number,
 };
 export default connect(
   (state) => ({

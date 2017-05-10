@@ -10,6 +10,7 @@ import Paper from 'material-ui/Paper';
 import {List, ListItem} from 'material-ui/List';
 import ModeEditIcon from 'material-ui/svg-icons/editor/mode-edit';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
+import ImageLens from 'material-ui/svg-icons/image/lens';
 import ActionFlightTakeoff from 'material-ui/svg-icons/action/flight-takeoff';
 import ActionAssignment from 'material-ui/svg-icons/action/assignment';
 import CommSwapCall from 'material-ui/svg-icons/communication/swap-calls';
@@ -27,6 +28,7 @@ import FlatButton from 'material-ui/FlatButton';
 import SelectField from 'material-ui/SelectField';
 import AuthConnect from '../../components/AuthConnect';
 import { saveWGroups, WorkgroupApis } from '../../store/actions/wgroupActions';
+import WGroupProfileLite from './WGroupProfileLite';
 
 const iconButtonElement = (
   <IconButton
@@ -43,6 +45,8 @@ const rightIconMenu = (
     <MenuItem>Delete</MenuItem>
   </IconMenu>
 );
+
+const users = ['jsa-128.jpg','kerem-128.jpg','kolage-128.jpg','ok-128.jpg','uxceo-128.jpg'];
 
 function getStyles(muiTheme) {
 
@@ -65,19 +69,14 @@ function getStyles(muiTheme) {
       flex: 1 ,
       paddingRight: 10
     },
+    column:{
+      padding: 5,
+    },
     rightPanel: {
       paddingLeft:10,
       flexGrow: 0,
       flexShrink: 0,
       flexBasis: 300,
-    },
-    descr:{
-      color: baseTheme.palette.secondaryTextColor,
-    },
-    smallIcon: {
-      width: 20,
-      height: 20,
-      color: baseTheme.palette.secondaryTextColor,
     },
   };
 }
@@ -91,257 +90,101 @@ class WGroupListPage extends React.Component {
   }
 
   componentWillMount() {
-    if (this.props.setCurrentPage) { this.props.setCurrentPage('wgrouplist'); }
+    if (this.props.setCurrentPage) { this.props.setCurrentPage('wgrouptopics'); }
   }
 
-  onProfileExpand = () => {
-    this.setState({profileExpand: !this.state.profileExpand});
-  }
   render() {
-    const styles = this.styles;
 
-    let expandContent = this.state.profileExpand ? 
-        <div style={{marginTop: 5}}>
-          <Divider/>
-          <div style={{paddingTop:10, paddingBottom:10}}>
-            <Avatar src="assets/img/uxceo-128.jpg" size={30} style={{  marginLeft: 5, marginRight: 5}}/>
-            <Avatar src="assets/img/uxceo-128.jpg" size={30} style={{  marginLeft: 5, marginRight: 5}}/>
-            <Avatar src="assets/img/uxceo-128.jpg" size={30} style={{  marginLeft: 5, marginRight: 5}}/>
-            <Avatar src="assets/img/uxceo-128.jpg" size={30} style={{  marginLeft: 5, marginRight: 5}}/>
-            <Avatar src="assets/img/uxceo-128.jpg" size={30} style={{ marginLeft: 5, marginRight: 5}}/>
-            <Avatar src="assets/img/uxceo-128.jpg" size={30} style={{  marginLeft: 5, marginRight: 5}}/>
-            <Avatar src="assets/img/uxceo-128.jpg" size={30} style={{  marginLeft: 5, marginRight: 5}}/>
-            <Avatar src="assets/img/uxceo-128.jpg" size={30} style={{  marginLeft: 5, marginRight: 5}}/>
-            <Avatar src="assets/img/uxceo-128.jpg" size={30} style={{  marginLeft: 5, marginRight: 5}}/>
-          </div>
-          <Divider/>
-          <div style={{paddingTop:10}}>
-            <IconButton tooltip="Ligature">
-              <HWKeyBoardUp />
-            </IconButton>
-          </div>
-        </div> : null;
+    const styles = this.styles;
+    const numCol = Object.assign({}, styles.column, {width: 60, textAlign:'center'}) ;
+    const cateCol = Object.assign({}, styles.column, {width: 100}) ;
+    const userCol = Object.assign({}, styles.column, {width: 160, verticalAlign:'middle'}) ;
+    let spanEl = <span style={{height:'100%', display:'inline-block', verticalAlign:'middle'}} />
+
+    let usersEl = users.map((item) => {
+
+      return (
+        <a href="" style={{display:'block', float:'left', height: 25}}><Avatar src={"assets/img/" + item} size={25} style={{ marginRight: 5}}/></a>
+      );
+    });
 
     return (
       <div style={ styles.root }>
-        <div style={styles.leftPanel}>
-          <div style={styles.topBar}>
+        <div style={ styles.leftPanel }>
+          <div style={ styles.topBar }>
             <SelectField value={this.state.value} onChange={this.handleChange} style={{ width:150, marginRight: 10}}>
               <MenuItem value={1} label="5 am - 12 pm" primaryText="Morning" />
               <MenuItem value={2} label="12 pm - 5 pm" primaryText="Afternoon" />
               <MenuItem value={3} label="5 pm - 9 pm" primaryText="Evening" />
               <MenuItem value={4} label="9 pm - 5 am" primaryText="Night" />
             </SelectField>
-                <FlatButton label="Default" style={{ marginRight: 10}} />
-                <FlatButton label="Primary" primary={true} style={{ backgroundColor: grey400, marginRight: 10}}/>
-                <FlatButton label="Secondary" secondary={true} />
+            <FlatButton label="Default" style={{ marginRight: 10}} />
+            <FlatButton label="Primary" primary={true} style={{ backgroundColor: grey400, marginRight: 10}}/>
+            <FlatButton label="Secondary" secondary={true} />
           </div>
           <Table>
-            <TableHeader adjustForCheckbox={ false } enableSelectAll={ false } displaySelectAll={ false }>
+            <TableHeader 
+            adjustForCheckbox={ false } 
+            enableSelectAll={ false } 
+            displaySelectAll={ false } 
+            style={{borderBottomWidth: 2}}>
               <TableRow>
-                <TableHeaderColumn>ID</TableHeaderColumn>
-                <TableHeaderColumn>Name</TableHeaderColumn>
-                <TableHeaderColumn>Status</TableHeaderColumn>
+                <TableHeaderColumn style={ styles.column }>Topic</TableHeaderColumn>
+                <TableHeaderColumn style={ cateCol }>Category</TableHeaderColumn>
+                <TableHeaderColumn style={ userCol }>Users</TableHeaderColumn>
+                <TableHeaderColumn style={ numCol }>Rep.</TableHeaderColumn>
+                <TableHeaderColumn style={ numCol }>Vw.</TableHeaderColumn>
+                <TableHeaderColumn style={ numCol }>Act.</TableHeaderColumn>
               </TableRow>
             </TableHeader>
             <TableBody displayRowCheckbox={ false }>
               <TableRow>
-                <TableRowColumn>1</TableRowColumn>
-                <TableRowColumn>John Smith</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
+                <TableRowColumn style={ styles.column }>
+                  <span style={{fontSize: 14, fontWeight: 600}}>
+                    <a href="#" style={{textDecoration:'none', color:darkBlack}}>如何构建一个出色的应用特别是SPA?</a>
+                  </span>
+                  <div style={{ fontSize: 14, color:'#919191', wordBreak:'break-all', wordWrap:'break-word',lineHeight:1.4 ,whiteSpace: 'normal', paddingRight:5}}>
+                    <span>在 HTML 4.01 中，不赞成使用 td 元素的 nowrap 属性；在 XHTML 1.0 Strict DTD 中，不支持 td 元素的 nowrap 属性。
+                      <a href="/t/welcome-to-the-react-discussion-forum/11">read more...</a>
+                    </span>
+                  </div>
+                </TableRowColumn>
+                <TableRowColumn style={ cateCol }>
+                  <span style={{display:'block', height: 18, verticalAlign:'middle'}}> 
+                    <ImageLens style={{width: 16,height:16 ,color:'red', float:'left', marginTop:3, marginRight: 5}}/>
+                   Develop
+                  </span>
+                </TableRowColumn>
+                <TableRowColumn style={ userCol }>
+                  {usersEl}
+                </TableRowColumn>
+                <TableRowColumn style={ numCol }>34</TableRowColumn>
+                <TableRowColumn style={ numCol }>3K</TableRowColumn>
+                <TableRowColumn style={ numCol }>45</TableRowColumn>
               </TableRow>
               <TableRow>
-                <TableRowColumn>2</TableRowColumn>
-                <TableRowColumn>Randal White</TableRowColumn>
-                <TableRowColumn>Unemployed</TableRowColumn>
+                <TableRowColumn style={ styles.column }>
+                  <span style={{fontSize: 14, fontWeight: 600}}>
+                    <a href="#" style={{textDecoration:'none', color:darkBlack}}>Any good library in React for building DockSpawn style windows on an SPA?</a>
+                  </span>
+                </TableRowColumn>
+                <TableRowColumn style={ cateCol }>
+                  <span style={{display:'block', height: 18, verticalAlign:'middle'}}> 
+                    <ImageLens style={{width: 16,height:16 ,color:'yellow', float:'left', marginTop:3, marginRight: 5}}/>
+                   Develop
+                  </span>
+                </TableRowColumn>
+                <TableRowColumn style={ userCol }>
+                  {usersEl}
+                </TableRowColumn>
+                <TableRowColumn style={ numCol }>34</TableRowColumn>
+                <TableRowColumn style={ numCol }>3.2K</TableRowColumn>
+                <TableRowColumn style={ numCol }>4</TableRowColumn>
               </TableRow>
             </TableBody>
           </Table>
         </div>
-        <div style={styles.rightPanel}>
-          <div style={{ display: 'flex'}}>
-            <Avatar src="assets/img/uxceo-128.jpg" size={60} style={{ marginTop: 5, marginLeft: 5, marginRight: 5}}/>
-            <div style={{ flex: 1, marginLeft:5 }}>
-              <h4>ExissEvilGrp</h4>
-              <p style={styles.descr}>are used for general functions and reduce the amount of layering on the screen</p>
-            </div>
-          </div>
-          <div style={{padding: 10}}>
-            <div style={{display: 'flex'}}>
-              <div style={{flexGrow: 1}}>
-                <h3 style={{textAlign:'center'}}>14</h3>
-                <span style={{display:'block', textAlign:'center'}}>
-                  <CommSwapCall style={styles.smallIcon}/>
-                </span>
-              </div>
-              <div style={{flexGrow: 1}}>
-                <h4 style={{textAlign:'center'}}>123K</h4>
-                <span style={{display:'block', textAlign:'center'}}><ActionAssignment style={styles.smallIcon} /></span>
-              </div>
-              <div style={{flexGrow: 1}}>
-                <h4 style={{textAlign:'center'}}>123</h4>
-                <span style={{display:'block', textAlign:'center'}}><CommContacts style={styles.smallIcon} /></span>
-              </div>
-              <div style={{flexGrow: 0, flexBasis: 40}}>
-                <IconButton onTouchTap={this.onProfileExpand}>
-                  { this.state.profileExpand ? <HWKeyBoardUp /> : <HWKeyBoardDown />}
-                </IconButton>
-              </div>
-            </div>
-            { expandContent }
-          </div>
-          <Tabs style={{ marginTop: 10}}>
-            <Tab icon={<ActionFlightTakeoff/>}>
-              <List style={{marginTop: 0}}>
-                <Subheader style={{lineHeight:'38px'}}>Top 5 Hotest</Subheader>
-                <ListItem
-                  leftAvatar={<Avatar size={30} src="assets/img/ok-128.jpg" />}
-                  rightIconButton={rightIconMenu}
-                  primaryText="Brendan Lim"
-                  innerDivStyle={{ padding: '10px 40px 10px 60px'}}
-                  secondaryText={
-                    <p>
-                      <span style={{color: darkBlack}}>Brunch this weekend?</span><br />
-                      I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?
-                    </p>
-                  }
-                  secondaryTextLines={2}
-                />
-                <Divider/>
-                <ListItem
-                  leftAvatar={<Avatar size={30} src="assets/img/kolage-128.jpg" />}
-                  rightIconButton={rightIconMenu}
-                  primaryText="me, Scott, Jennifer"
-                  innerDivStyle={{ padding: '10px 40px 10px 60px'}}
-                  secondaryText={
-                    <p>
-                      <span style={{color: darkBlack}}>Summer BBQ</span><br />
-                      Wish I could come, but I&apos;m out of town this weekend.
-                    </p>
-                  }
-                  secondaryTextLines={2}
-                />
-                <Divider />
-                <ListItem
-                  leftAvatar={<Avatar size={30} src="assets/img/uxceo-128.jpg" />}
-                  rightIconButton={rightIconMenu}
-                  primaryText="Grace Ng"
-                  innerDivStyle={{ padding: '10px 40px 10px 60px'}}
-                  secondaryText={
-                    <p>
-                      <span style={{color: darkBlack}}>Oui oui</span><br />
-                      Do you have any Paris recs? Have you ever been?
-                    </p>
-                  }
-                  secondaryTextLines={2}
-                />
-                <Divider />
-                <ListItem
-                  leftAvatar={<Avatar size={30} src="assets/img/kerem-128.jpg" />}
-                  rightIconButton={rightIconMenu}
-                  primaryText="Kerem Suer"
-                  innerDivStyle={{ padding: '10px 40px 10px 60px'}}
-                  secondaryText={
-                    <p>
-                      <span style={{color: darkBlack}}>Birthday gift</span><br />
-                      Do you have any ideas what we can get Heidi for her birthday? How about a pony?
-                    </p>
-                  }
-                  secondaryTextLines={2}
-                />
-                <Divider />
-                <ListItem
-                  leftAvatar={<Avatar size={30} src="assets/img/raquelromanp-128.jpg" />}
-                  rightIconButton={rightIconMenu}
-                  primaryText="Raquel Parrado"
-                  innerDivStyle={{ padding: '10px 40px 10px 60px'}}
-                  secondaryText={
-                    <p>
-                      <span style={{color: darkBlack}}>Recipe to try</span><br />
-                      We should eat this: grated squash. Corn and tomatillo tacos.
-                    </p>
-                  }
-                  secondaryTextLines={2}
-                />
-              </List>
-            </Tab>
-            <Tab icon={<ActionFlightTakeoff />}>
-              <List style={{marginTop: 0}}>
-                <Subheader style={{lineHeight:'38px'}}>Top 5 Hotest</Subheader>
-                <ListItem
-                  leftAvatar={<Avatar size={30} src="assets/img/ok-128.jpg" />}
-                  rightIconButton={rightIconMenu}
-                  primaryText="Brendan Lim"
-                  innerDivStyle={{ padding: '10px 40px 10px 60px'}}
-                  secondaryText={
-                    <p>
-                      <span style={{color: darkBlack}}>Brunch this weekend?</span><br />
-                      I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?
-                    </p>
-                  }
-                  secondaryTextLines={2}
-                />
-                <Divider/>
-                <ListItem
-                  leftAvatar={<Avatar size={30} src="assets/img/kolage-128.jpg" />}
-                  rightIconButton={rightIconMenu}
-                  primaryText="me, Scott, Jennifer"
-                  innerDivStyle={{ padding: '10px 40px 10px 60px'}}
-                  secondaryText={
-                    <p>
-                      <span style={{color: darkBlack}}>Summer BBQ</span><br />
-                      Wish I could come, but I&apos;m out of town this weekend.
-                    </p>
-                  }
-                  secondaryTextLines={2}
-                />
-                <Divider />
-                <ListItem
-                  leftAvatar={<Avatar size={30} src="assets/img/uxceo-128.jpg" />}
-                  rightIconButton={rightIconMenu}
-                  primaryText="Grace Ng"
-                  innerDivStyle={{ padding: '10px 40px 10px 60px'}}
-                  secondaryText={
-                    <p>
-                      <span style={{color: darkBlack}}>Oui oui</span><br />
-                      Do you have any Paris recs? Have you ever been?
-                    </p>
-                  }
-                  secondaryTextLines={2}
-                />
-                <Divider />
-                <ListItem
-                  leftAvatar={<Avatar size={30} src="assets/img/kerem-128.jpg" />}
-                  rightIconButton={rightIconMenu}
-                  primaryText="Kerem Suer"
-                  innerDivStyle={{ padding: '10px 40px 10px 60px'}}
-                  secondaryText={
-                    <p>
-                      <span style={{color: darkBlack}}>Birthday gift</span><br />
-                      Do you have any ideas what we can get Heidi for her birthday? How about a pony?
-                    </p>
-                  }
-                  secondaryTextLines={2}
-                />
-                <Divider />
-                <ListItem
-                  leftAvatar={<Avatar size={30} src="assets/img/raquelromanp-128.jpg" />}
-                  rightIconButton={rightIconMenu}
-                  primaryText="Raquel Parrado"
-                  innerDivStyle={{ padding: '10px 40px 10px 60px'}}
-                  secondaryText={
-                    <p>
-                      <span style={{color: darkBlack}}>Recipe to try</span><br />
-                      We should eat this: grated squash. Corn and tomatillo tacos.
-                    </p>
-                  }
-                  secondaryTextLines={2}
-                />
-              </List>
-            </Tab>
-            <Tab icon={<ActionFlightTakeoff/>} />
-          </Tabs>
-        </div>
+        <WGroupProfileLite muiTheme = {this.props.muiTheme} style={styles.rightPanel}/>
       </div>
     );
   }

@@ -24,6 +24,7 @@ const styles = {
     height: 44,
     color: typography.textDarkBlack,
   },
+  
 };
 
 // This is a class-based component because the current
@@ -50,7 +51,6 @@ class App extends Component {
     if(this.pageContent && this.pageBody){
       let bodyHeight = this.pageBody.offsetHeight;
       let contentHeight = this.pageContent.offsetHeight;
-      console.log(outerHeight + '/' + bodyHeight + '/' + contentHeight);
       this.pageBody.style.minHeight = (outerHeight - 60)+'px';
     }
   }

@@ -37,9 +37,9 @@ function getStyles(muiTheme) {
 }
 
 const allPages = {
-  wgroupadd: {
-    path: '/wgroup/wgroupadd/',
-    title: 'Workgroup Add',
+  wgrouptopic: {
+    path: '/wgroup/wgrouptopic/',
+    title: 'Workgroup Topic',
     icon: <ActCastCntHub />,
     description: 'Review the information of System',
     visible: true,
@@ -53,9 +53,9 @@ const allPages = {
     visible: true,
     disabled: false,
   },
-  wgrouplist: {
-    path: '/wgroup/wgrouplist',
-    title: 'Workgroup List',
+  wgrouptopics: {
+    path: '/wgroup/wgrouptopics',
+    title: 'Workgroup Topics',
     icon: <ActDeviceHub />,
     description: 'Review the settings of System',
     visible: true,

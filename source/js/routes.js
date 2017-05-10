@@ -9,6 +9,7 @@ import AboutPage from './views/AboutPage';
 
 import WGroupPage from './views/wgroup/WGroupPage';
 import WGroupTopicsPage from './views/wgroup/WGroupTopicsPage';
+import WGroupTopicPage from './views/wgroup/WGroupTopicPage';
 
 export const getRoutes = (store) => {
   const ensureAuthenticated = (nextState, replace) => { // eslint-disable-line no-unused-vars
@@ -38,6 +39,7 @@ export const getRoutes = (store) => {
       <Route path='wgroup' component={ WGroupPage }>
         <IndexRoute component={ WGroupTopicsPage } />
         <Route path='wgrouptopics' component={ WGroupTopicsPage } />
+        <Route path='wgrouptopic' component={ WGroupTopicPage } />
       </Route>
     </Route>
   );

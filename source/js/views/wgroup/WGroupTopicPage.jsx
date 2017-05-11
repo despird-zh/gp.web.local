@@ -7,6 +7,8 @@ import ActThumbUp from 'material-ui/svg-icons/action/thumb-up';
 import TglStar from 'material-ui/svg-icons/toggle/star';
 import TglStarBorder from 'material-ui/svg-icons/toggle/star-border';
 import Avatar from 'material-ui/Avatar';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import AuthConnect from '../component/AuthConnect';
 
@@ -123,6 +125,11 @@ class WGroupTopicPage extends React.Component {
                   <p>Any comments and feedback are very welcome.</p>
 
                   <p>Thanks and happy coding!</p>
+                </div>
+                <div style={{ position:'relative', right: 0, width:40}}>
+                      <FloatingActionButton mini={true} style={30}>
+                        <ContentAdd />
+                      </FloatingActionButton>
                 </div>
                 <div style={ styles.comments }>
                   <div style={ styles.comment }>

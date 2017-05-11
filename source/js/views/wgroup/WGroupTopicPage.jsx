@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import IconButton from 'material-ui/IconButton';
+import ActCaseHub from 'material-ui/svg-icons/hardware/cast';
 import AuthConnect from '../component/AuthConnect';
 
 function getStyles(muiTheme) {
@@ -37,10 +38,18 @@ class WGroupTopicPage extends React.Component {
     if (this.props.setCurrentPage) { this.props.setCurrentPage('topic'); }
   }
 
+  test(){
+    console.log('~~~~~=-=')
+  }
+
   componentDidMount() {
+    let buttons = [
+    <IconButton onTouchTap={ this.test }>
+      <ActCaseHub/>
+    </IconButton>];
     let title = <a href="#" style={{textDecoration:'none'}}>Java regex to extract text sequences across multiple lines</a>
     if (this.props.setCurrentPage) { 
-      this.props.setCurrentPage('topic', {title}); 
+      this.props.setCurrentPage('topic', {title, buttons}); 
     }
   }
 

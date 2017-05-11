@@ -26,7 +26,7 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
 import SelectField from 'material-ui/SelectField';
-import AuthConnect from '../../components/AuthConnect';
+import AuthConnect from '../component/AuthConnect';
 import { saveWGroups, WorkgroupApis } from '../../store/actions/wgroupActions';
 import WGroupProfileLite from './WGroupProfileLite';
 
@@ -81,7 +81,7 @@ function getStyles(muiTheme) {
   };
 }
 
-class WGroupListPage extends React.Component {
+class WGroupTopicsPage extends React.Component {
 
   constructor(props) {
     super(props);
@@ -90,8 +90,9 @@ class WGroupListPage extends React.Component {
   }
 
   componentWillMount() {
-    if (this.props.setCurrentPage) { this.props.setCurrentPage('wgrouptopics'); }
+    if (this.props.setCurrentPage) { this.props.setCurrentPage('topics'); }
   }
+
 
   render() {
 
@@ -190,7 +191,7 @@ class WGroupListPage extends React.Component {
   }
 }
 
-WGroupListPage.propTypes = {
+WGroupTopicsPage.propTypes = {
   setCurrentPage: PropTypes.func,
   saveWGroups: PropTypes.func,
   wgrplist: PropTypes.object,
@@ -221,7 +222,7 @@ const WGroupListRow = ({ rowData, styles, onHandleJump }) => {
 /*eslint-enable */
 
 const NewComponent = AuthConnect(
-  WGroupListPage,
+  WGroupTopicsPage,
   (state) => ({
     wgrouplist: state.wgroup.get('wgrouplist'),
   }),

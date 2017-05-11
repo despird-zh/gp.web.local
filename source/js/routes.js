@@ -38,8 +38,8 @@ export const getRoutes = (store) => {
       <Route path='about' component={ AboutPage } />
       <Route path='wgroup' component={ WGroupPage }>
         <IndexRoute component={ WGroupTopicsPage } />
-        <Route path='wgrouptopics' component={ WGroupTopicsPage } />
-        <Route path='wgrouptopic' component={ WGroupTopicPage } />
+        <Route path='topics' component={ WGroupTopicsPage } />
+        <Route path='topic' component={ WGroupTopicPage } />
       </Route>
     </Route>
   );

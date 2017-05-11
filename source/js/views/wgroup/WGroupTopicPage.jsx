@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import AuthConnect from '../../components/AuthConnect';
+import AuthConnect from '../component/AuthConnect';
 
 function getStyles(muiTheme) {
 
@@ -34,7 +34,14 @@ class WGroupTopicPage extends React.Component {
   }
 
   componentWillMount() {
-    if (this.props.setCurrentPage) { this.props.setCurrentPage('wgrouptopic'); }
+    if (this.props.setCurrentPage) { this.props.setCurrentPage('topic'); }
+  }
+
+  componentDidMount() {
+    let title = <a href="#" style={{textDecoration:'none'}}>Java regex to extract text sequences across multiple lines</a>
+    if (this.props.setCurrentPage) { 
+      this.props.setCurrentPage('topic', {title}); 
+    }
   }
 
   render(){

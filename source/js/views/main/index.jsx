@@ -24,65 +24,64 @@ const styles = {
     height: 44,
     color: typography.textDarkBlack,
   },
-  
+
 };
 
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless
 // component at the top-level.
 class App extends Component {
-  constructor(props) {
-    super(props);
+
+  componentDidMount = () => {
+    this.resetPageBodyHeight();
+    this.resizeThrottle = Throttle(this.resetPageBodyHeight, 200);
+    window.addEventListener('resize', this.resizeThrottle);
   }
-  setPageContentRef = (el) => {
-    this.pageContent = el;
+
+  componentDidUpdate = () => {
+    this.resetPageBodyHeight();
   }
+
+  componentWillUnmount= () => {
+    window.removeEventListener('resize', this.resizeThrottle);
+  }
+
   setPageBodyRef = (el) => {
     this.pageBody = el;
   }
 
+  setPageContentRef = (el) => {
+    this.pageContent = el;
+  }
+
   resetPageBodyHeight = () => {
-    let w = window;
-    let d = document;
-    let documentElement = d.documentElement;
-    let body = d.getElementsByTagName('body')[0];
-    let outerHeight = w.innerHeight|| documentElement.clientHeight|| body.clientHeight;
-    
-    if(this.pageContent && this.pageBody){
-      let bodyHeight = this.pageBody.offsetHeight;
-      let contentHeight = this.pageContent.offsetHeight;
-      this.pageBody.style.minHeight = (outerHeight - 60)+'px';
+    const w = window;
+    const d = document;
+    const documentElement = d.documentElement;
+    const body = d.getElementsByTagName('body')[0];
+    const outerHeight = w.innerHeight || documentElement.clientHeight || body.clientHeight;
+
+    if (this.pageContent && this.pageBody) {
+      this.pageBody.style.minHeight = `${ outerHeight - 60 }px`;
     }
-  }
-  componentDidUpdate = () => {
-    this.resetPageBodyHeight();
-  }
-  componentDidMount = () => {
-    this.resetPageBodyHeight();
-    this.resizeThrottle = Throttle(this.resetPageBodyHeight, 200);
-    window.addEventListener("resize", this.resizeThrottle);
-  }
-  componentWillUnmount= () => {
-    window.removeEventListener("resize", this.resizeThrottle);
   }
 
   render() {
-
     return (
       <MuiThemeProvider muiTheme={ rootTheme }>
         <div className='wrapper'>
           <Paper style={ styles.header } className='header'>
             <HeaderBar />
           </Paper>
-          <div ref= { this.setPageBodyRef } className='body'>
+          <div ref={ this.setPageBodyRef } className='body'>
             <div ref={ this.setPageContentRef } className='content'>
               {this.props.children}
             </div>
             <SigninDialog />
             <AffiliateBars />
           </div>
-          <div  className='footer'>
-            <FooterBar style={ styles.footer }/>
+          <div className='footer'>
+            <FooterBar style={ styles.footer } />
           </div>
         </div>
       </MuiThemeProvider>

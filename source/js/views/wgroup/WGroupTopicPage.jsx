@@ -5,21 +5,20 @@ import ActCaseHub from 'material-ui/svg-icons/hardware/cast';
 import AuthConnect from '../component/AuthConnect';
 
 function getStyles(muiTheme) {
-
   const { baseTheme } = muiTheme;
-  console.log(baseTheme)
+  console.log(baseTheme);
   return {
     root: {
       display: 'flex',
       position: 'relative',
       marginTop: 10,
     },
-    leftPanel: { 
-      flex: 1 ,
-      paddingRight: 10
+    leftPanel: {
+      flex: 1,
+      paddingRight: 10,
     },
     rightPanel: {
-      paddingLeft:10,
+      paddingLeft: 10,
       flexGrow: 0,
       flexShrink: 0,
       flexBasis: 300,
@@ -38,32 +37,30 @@ class WGroupTopicPage extends React.Component {
     if (this.props.setCurrentPage) { this.props.setCurrentPage('topic'); }
   }
 
-  test(){
-    console.log('~~~~~=-=')
-  }
-
   componentDidMount() {
-    let buttons = [
-    <IconButton onTouchTap={ this.test }>
-      <ActCaseHub/>
-    </IconButton>];
-    let title = <a href="#" style={{textDecoration:'none'}}>Java regex to extract text sequences across multiple lines</a>
-    if (this.props.setCurrentPage) { 
-      this.props.setCurrentPage('topic', {title, buttons}); 
+    const buttons = [
+      <IconButton onTouchTap={ this.test }>
+        <ActCaseHub />
+      </IconButton>];
+    const title = <a href='dhh' style={ { textDecoration: 'none' } }>Java regex to extract text sequences across multiple lines</a>;
+    if (this.props.setCurrentPage) {
+      this.props.setCurrentPage('topic', { title, buttons });
     }
   }
 
-  render(){
-    let styles = this.styles;
+  test() {
+    console.log('asdf');
+  }
+  render() {
+    const styles = this.styles;
 
     return (
       <div style={ styles.root }>
         <div style={ styles.leftPanel }>
           <h2>
-            <a href="#" style={{textDecoration:'none'}}>Java regex to extract text sequences across multiple lines</a>
+            <a href='/fd' style={ { textDecoration: 'none' } }>Java regex to extract text sequences across multiple lines</a>
           </h2>
-          <div>
-          </div>
+          <div />
         </div>
         <div style={ styles.rightPanel }>
           sdf
@@ -73,4 +70,16 @@ class WGroupTopicPage extends React.Component {
   }
 }
 
-export default WGroupTopicPage;
+WGroupTopicPage.propTypes = {
+  setCurrentPage: PropTypes.func,
+  muiTheme: PropTypes.object,
+};
+
+const NewComponent = AuthConnect(
+  WGroupTopicPage,
+  (state) => ({
+    wgrouplist: state.wgroup.get('wgrouplist'),
+  }),
+  { });
+
+export default NewComponent;

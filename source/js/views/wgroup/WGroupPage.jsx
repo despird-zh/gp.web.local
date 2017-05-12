@@ -18,8 +18,16 @@ const allPages = {
     visible: true,
     disabled: false,
   },
-  wgroupedit: {
-    path: '/wgroup/wgroupedit/',
+  demo1: {
+    path: '/wgroup/demo1/',
+    title: 'Workgroup Edit',
+    icon: <ActCaseHub />,
+    description: 'Review the information of System',
+    visible: true,
+    disabled: false,
+  },
+  demo: {
+    path: '/wgroup/demo/',
     title: 'Workgroup Edit',
     icon: <ActCaseHub />,
     description: 'Review the information of System',
@@ -39,8 +47,8 @@ const allPages = {
 class WGroupPage extends React.Component {
 
   setVisible = (currentPage, pages) => {
-    if (currentPage !== 'wgroupedit') {
-      pages.wgroupedit.visible = false; // eslint-disable-line
+    if (currentPage !== 'demo1') {
+      pages.demo1.visible = false; // eslint-disable-line
     }
   }
 

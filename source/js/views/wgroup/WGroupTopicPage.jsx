@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import IconButton from 'material-ui/IconButton';
 import ActGavel from 'material-ui/svg-icons/action/gavel';
 import ActDone from 'material-ui/svg-icons/action/done';
-import ActThumbDown from 'material-ui/svg-icons/action/thumb-down';
-import ActThumbUp from 'material-ui/svg-icons/action/thumb-up';
+import NviArrowDown from 'material-ui/svg-icons/navigation/arrow-drop-down';
+import NviArrowUp from 'material-ui/svg-icons/navigation/arrow-drop-up';
 import ActThumbsUpDown from 'material-ui/svg-icons/action/thumbs-up-down';
 import ActBookmark from 'material-ui/svg-icons/action/bookmark';
 import ActTrackChng from 'material-ui/svg-icons/action/track-changes';
@@ -13,10 +13,15 @@ import ContentFlag from 'material-ui/svg-icons/content/flag';
 import SocialShare from 'material-ui/svg-icons/social/share';
 import TglStar from 'material-ui/svg-icons/toggle/star';
 import TglStarBorder from 'material-ui/svg-icons/toggle/star-border';
+import ImageLens from 'material-ui/svg-icons/image/lens';
+import AVStop from 'material-ui/svg-icons/av/stop';
 import EditBubbleChrt from 'material-ui/svg-icons/editor/bubble-chart';
 import Avatar from 'material-ui/Avatar';
+import Divider from 'material-ui/Divider';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import {List, ListItem} from 'material-ui/List';
+import Chip from 'material-ui/Chip';
 
 import AuthConnect from '../component/AuthConnect';
 
@@ -87,6 +92,7 @@ function getStyles(muiTheme) {
     },
     account: {
       textDecoration: 'none' ,
+      marginRight: 5
     }
   };
 }
@@ -139,19 +145,24 @@ class WGroupTopicPage extends React.Component {
           <div style={ styles.post }>
             <div style={{ display: 'flex' }}>
               <div style={{ flexBasis: 60, display: 'flex', flexDirection:'column', paddingLeft: 10, paddingRight:10}}>
-                <Avatar src="assets/img/kerem-128.jpg" size={48}  />
-                <IconButton iconStyle={ styles.iconBtn }><ActThumbUp/></IconButton>
+                <Avatar src="assets/img/kerem-128.jpg" size={40} style={{ marginLeft:5}} />
+                <IconButton iconStyle={ styles.iconBtn }><NviArrowUp/></IconButton>
                 <div style={ styles.thumbInfo }>
                   1023
                 </div>
-                <IconButton iconStyle={ styles.iconBtn }><ActThumbDown/></IconButton>
+                <IconButton iconStyle={ styles.iconBtn }><NviArrowDown/></IconButton>
                 <IconButton iconStyle={ styles.iconBtn }><TglStarBorder/></IconButton>
               </div>
               <div style={{ flex: 1 }}>
                 <div>
                   <a href="/sf" style={ styles.account }>
                     <span style={{ fontWeight: 600}}>akuzko</span> Artme Kuzko
+                    
                   </a> 
+                  <span style={ { display: 'inline-block', height: 18} }>
+                    <AVStop style={ { width: 16, height: 16, color: 'red', float: 'left', marginTop: 4, marginRight: 3 } } />
+                     Develop
+                  </span>
                   <span style={ styles.timeStamp }>6days</span>
                 </div>
                 <div>
@@ -210,12 +221,12 @@ class WGroupTopicPage extends React.Component {
           <div style={ styles.answer }>
             <div style={{ display: 'flex' }}>
               <div style={{ flexBasis: 60, display: 'flex', flexDirection:'column', paddingLeft: 10, paddingRight:10}}>
-                <Avatar src="assets/img/kerem-128.jpg" size={48}  />
-                <IconButton iconStyle={ styles.iconBtn }><ActThumbUp/></IconButton>
+                <Avatar src="assets/img/kerem-128.jpg" size={40} style={{ marginLeft:5}}  />
+                <IconButton iconStyle={ styles.iconBtn }><NviArrowUp/></IconButton>
                 <div style={ styles.thumbInfo }>
                   23
                 </div>
-                <IconButton iconStyle={ styles.iconBtn }><ActThumbDown/></IconButton>
+                <IconButton iconStyle={ styles.iconBtn }><NviArrowDown/></IconButton>
                 <IconButton iconStyle={ styles.iconBtn }><ActDone/></IconButton>
               </div>
               <div style={{ flex: 1 }}>
@@ -273,12 +284,12 @@ class WGroupTopicPage extends React.Component {
           <div style={ styles.answer }>
             <div style={{ display: 'flex' }}>
               <div style={{ flexBasis: 60, display: 'flex', flexDirection:'column', paddingLeft: 10, paddingRight:10}}>
-                <Avatar src="assets/img/kerem-128.jpg" size={48}  />
-                <IconButton iconStyle={ styles.iconBtn }><ActThumbUp/></IconButton>
+                <Avatar src="assets/img/kerem-128.jpg" size={40} style={{ marginLeft:5}}  />
+                <IconButton iconStyle={ styles.iconBtn }><NviArrowUp/></IconButton>
                 <div style={ styles.thumbInfo }>
                   13
                 </div>
-                <IconButton iconStyle={ styles.iconBtn }><ActThumbDown/></IconButton>
+                <IconButton iconStyle={ styles.iconBtn }><NviArrowDown/></IconButton>
               </div>
               <div style={{ flex: 1 }}>
                 <div>
@@ -332,24 +343,7 @@ class WGroupTopicPage extends React.Component {
         </div>
         <div style={ styles.rightPanel }>
           <div style={{display: 'flex'}}>
-            <div style={{flex:1, textAlign:'center'}}>
-              <h4 style={ styles.sumTitle }>created</h4>
-              <div style={{ display:'block'}}>
-                <a href='' >
-                  <Avatar src={ `assets/img/kerem-128.jpg` } size={ 20 } style={ { marginRight: 5,verticalAlign:'middle'} } /> 
-                </a>
-                <span style={ { marginRight: 5, display:'inline-block', verticalAligh:'middle'}}>7天</span>
-              </div>
-            </div>
-            <div style={{flex:1, textAlign:'center'}}>
-              <h4 style={ styles.sumTitle }>active</h4>
-              <div style={{ display:'block'}}>
-                <a href='' >
-                  <Avatar src={ `assets/img/kerem-128.jpg` } size={ 20 } style={ { marginRight: 5,verticalAlign:'middle'} } /> 
-                </a>
-                <span style={ { marginRight: 5, display:'inline-block', verticalAligh:'middle'}}>7H</span>
-              </div>
-            </div>
+
             <div style={{flex:1, textAlign:'center'}}>
               <h4 style={ styles.sumTitle }>views</h4>
               <span style={ { marginRight: 5, verticalAligh:'middle'}}>12K</span>
@@ -362,6 +356,60 @@ class WGroupTopicPage extends React.Component {
               <h4 style={ styles.sumTitle }>users</h4>
               <span style={ { marginRight: 5, verticalAligh:'middle'}}>12</span>
             </div>
+            <div style={{flex:1, textAlign:'center'}}>
+              <h4 style={ styles.sumTitle }>comments</h4>
+              <span style={ { marginRight: 5, verticalAligh:'middle'}}>123</span>
+            </div>
+          </div>
+          <div style={{ display:'block' ,paddingBottom:10}} className="clearfix">
+            <div style={{float:'left', minWidth:'25%', textAlign:'center'}}>
+              <h4 style={ styles.sumTitle }>创建</h4>
+              <div style={{ display:'block'}}>
+                <a href='' >
+                  <Avatar src={ `assets/img/kerem-128.jpg` } size={ 20 } style={ { marginRight: 5,verticalAlign:'middle'} } /> 
+                </a>
+                <span style={ { marginRight: 5, display:'inline-block', verticalAligh:'middle'}}>17天</span>
+              </div>
+            </div>
+            <div style={{float:'left', minWidth:'25%', textAlign:'center'}}>
+              <h4 style={ styles.sumTitle }>active</h4>
+              <div style={{ display:'block'}}>
+                <a href='' >
+                  <Avatar src={ `assets/img/kerem-128.jpg` } size={ 20 } style={ { marginRight: 5,verticalAlign:'middle'} } /> 
+                </a>
+                <span style={ { marginRight: 5, display:'inline-block', verticalAligh:'middle'}}>7H</span>
+              </div>
+            </div>
+          </div>
+          <Divider />
+          <div style={{padding:'10px 0'}}>
+            <Chip style={{margin:4, display: 'inline-block', fontSize: 12}}>
+              技术
+            </Chip>
+            <Chip style={{margin:4, display: 'inline-block'}}>
+              机械
+            </Chip>
+            <Chip style={{margin:4, display: 'inline-block'}}>
+              加工
+            </Chip>
+          </div>
+          <Divider />
+          <div>
+            <h4 style={{paddingTop: 10}}>Hotest topics</h4>
+            <ul style={{display:'block', paddingLeft: 0, marginTop:10}}>
+              <li style={{listStyleType:'none', display:'flex', marginLeft:0, marginBottom: 0}}>
+                <div style={{display: 'inline-block', flexBasis:32, width: 32, marginRight: 5, marginTop:5}}>
+                  <Avatar src={ `assets/img/kerem-128.jpg` } size={ 30 } /> 
+                </div>
+                <a href='/f' style={{display:'inline-block', textDecoration: 'none', flex:1, whiteSpace:'normal'}}>fine and expected until the data source is modified in someway (rows are removed, for example)</a>
+              </li>
+              <li style={{listStyleType:'none', display:'flex', marginLeft:0, marginBottom: 10}}>
+                <div style={{display: 'inline-block', flexBasis:32, width: 32, marginRight: 5, marginTop:5}}>
+                  <Avatar src={ `assets/img/kerem-128.jpg` } size={ 30 } /> 
+                </div>
+                <a href='/f' style={{display:'inline-block', textDecoration: 'none',flex:1, whiteSpace:'normal'}}>fine and expected until the data source is modified in someway (rows are removed, for example)</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

@@ -7,7 +7,7 @@ import Avatar from 'material-ui/Avatar';
 
 import ModeEditIcon from 'material-ui/svg-icons/editor/mode-edit';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
-import ImageLens from 'material-ui/svg-icons/image/lens';
+import AVStop from 'material-ui/svg-icons/av/stop';
 
 import { grey400, darkBlack } from 'material-ui/styles/colors';
 
@@ -121,7 +121,7 @@ class WGroupTopicsPage extends React.Component {
                 </TableRowColumn>
                 <TableRowColumn style={ cateCol }>
                   <span style={ { display: 'block', height: 18, verticalAlign: 'middle' } }>
-                    <ImageLens style={ { width: 16, height: 16, color: 'red', float: 'left', marginTop: 3, marginRight: 5 } } />
+                    <AVStop style={ { width: 16, height: 16, color: 'red', float: 'left', marginTop: 3, marginRight: 5 } } />
                    Develop
                   </span>
                 </TableRowColumn>
@@ -140,7 +140,7 @@ class WGroupTopicsPage extends React.Component {
                 </TableRowColumn>
                 <TableRowColumn style={ cateCol }>
                   <span style={ { display: 'block', height: 18, verticalAlign: 'middle' } }>
-                    <ImageLens style={ { width: 16, height: 16, color: 'yellow', float: 'left', marginTop: 3, marginRight: 5 } } />
+                    <AVStop style={ { width: 18, height: 18, color: 'yellow', float: 'left', marginTop: 3, marginRight: 5 } } />
                    Develop
                   </span>
                 </TableRowColumn>

@@ -82,3 +82,12 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.clearfix:before, .clearfix:after{
+    display: table;
+    content: " ";
+}
+
+.clearfix:after{
+    clear: both;
+}

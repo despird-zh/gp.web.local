@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import AuthConnect from '../component/AuthConnect';
 
 function getStyles(muiTheme) {
   const { baseTheme } = muiTheme;
@@ -50,6 +51,6 @@ const NewComponent = AuthConnect(
   (state) => ({
     wgrouplist: state.wgroup.get('wgrouplist'),
   }),
-  { saveWGroups });
+  {  });
 
 export default NewComponent;

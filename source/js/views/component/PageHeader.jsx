@@ -78,13 +78,15 @@ class PageHeader extends React.Component {
     let buttons = this.state.buttons;
 
     if (!buttons) {
-      buttons = pages.map((item) => {
-        return (item.visible ? <PageIconButton
-          key={ item.path }
+      let filtered = pages.filter(item => item.visible);
+
+      buttons = filtered.map((item, index) => {
+        return (<PageIconButton
+          key={ `pageicon-${index}` }
           pageIcon={ item }
           style={ !item.disabled ? this.styles.btnIconStyle : this.styles.activeBtnIconStyle }
           handleTouchJump={ this.handleTouchJump }
-        /> : null);
+        />);
       });
     }
 

@@ -12,7 +12,7 @@ import ImageLens from 'material-ui/svg-icons/image/lens';
 import { grey400, darkBlack } from 'material-ui/styles/colors';
 
 import MenuItem from 'material-ui/MenuItem';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import SelectField from 'material-ui/SelectField';
 import AuthConnect from '../component/AuthConnect';
 import { saveWGroups, WorkgroupApis } from '../../store/actions/wgroupActions';
@@ -31,7 +31,6 @@ function getStyles(muiTheme) {
     },
     topBar: {
       display: 'flex',
-      position: 'relative',
     },
     filter: {
       marginRight: baseTheme.spacing.desktopGutterLess,
@@ -88,9 +87,9 @@ class WGroupTopicsPage extends React.Component {
               <MenuItem value={ 3 } label='5 pm - 9 pm' primaryText='Evening' />
               <MenuItem value={ 4 } label='9 pm - 5 am' primaryText='Night' />
             </SelectField>
-            <FlatButton label='Default' style={ { marginRight: 10 } } />
-            <FlatButton label='Primary' primary={ true } style={ { backgroundColor: grey400, marginRight: 10 } } />
-            <FlatButton label='Secondary' secondary={ true } />
+            <RaisedButton label='Default' style={ { marginRight: 10, height: 36 } } />
+            <RaisedButton label='Primary' primary={ true } style={ { height: 36, backgroundColor: grey400, marginRight: 10 } } />
+            <RaisedButton label='Secondary' secondary={ true } style={ { marginRight: 10, height: 36 } }/>
           </div>
           <Table>
             <TableHeader

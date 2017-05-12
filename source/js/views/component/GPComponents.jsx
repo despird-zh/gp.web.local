@@ -55,6 +55,7 @@ PageIconButton.propTypes = {
   pageIcon: PropTypes.object,
   handleTouchJump: PropTypes.func,
   style: PropTypes.object,
+  index: PropTypes.number,
 };
 
 export { GPTextField, GPSelectField, PageIconButton };

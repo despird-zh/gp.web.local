@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import IconButton from 'material-ui/IconButton';
-
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 import Avatar from 'material-ui/Avatar';
 
 import ModeEditIcon from 'material-ui/svg-icons/editor/mode-edit';
@@ -71,9 +71,9 @@ class WGroupTopicsPage extends React.Component {
     const cateCol = Object.assign({}, styles.column, { width: 100 });
     const userCol = Object.assign({}, styles.column, { width: 160, verticalAlign: 'middle' });
 
-    const usersEl = users.map((item) => {
+    const usersEl = users.map((item, index) => {
       return (
-        <a href='' style={ { display: 'block', float: 'left', height: 25 } }><Avatar src={ `assets/img/${ item }` } size={ 25 } style={ { marginRight: 5 } } /></a>
+        <a key={index} href='' style={ { display: 'block', float: 'left', height: 25 } }><Avatar src={ `assets/img/${ item }` } size={ 25 } style={ { marginRight: 5 } } /></a>
       );
     });
 

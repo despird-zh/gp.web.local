@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from 'material-ui/IconButton';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+
 import Avatar from 'material-ui/Avatar';
 import { List, ListItem } from 'material-ui/List';
 import ActionFlightTakeoff from 'material-ui/svg-icons/action/flight-takeoff';
@@ -78,9 +80,9 @@ class WGroupProfileLite extends React.Component {
         </div>
         <Divider />
         <div style={ { paddingTop: 10 } }>
-          <IconButton tooltip='Ligature'>
+          <FloatingActionButton mini={true}>
             <HWKeyBoardUp />
-          </IconButton>
+          </FloatingActionButton>
         </div>
       </div>) : null;
 

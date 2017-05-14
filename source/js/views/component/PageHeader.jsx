@@ -69,6 +69,10 @@ class PageHeader extends React.Component {
     this.setState(state);
   }
 
+  setButtons = (buttons) => {
+    this.setState({buttons});
+  }
+
   handleTouchJump = (pathinfo) => {
     this.props.router.push(pathinfo.path);
   }

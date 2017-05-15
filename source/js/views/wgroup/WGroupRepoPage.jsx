@@ -44,7 +44,10 @@ function getStyles(muiTheme) {
       flexShrink: 0,
       flexBasis: 300,
     },
-    popOver:{
+    iconStyle:{
+      color: baseTheme.palette.primary1Color
+    },
+    popover:{
       padding:10, 
       width:600, 
       maxWidth:600,
@@ -102,19 +105,47 @@ var nodes = [
 const links = [
 {
   id: '1',
-  label: 'link1',
+  label: 'link2天涯处理工作如何',
 },
 {
   id: '2',
-  label: 'link2 天涯 处理工作 如何',
+  label: 'link2天涯处理工作如何',
+},
+{
+  id: '21',
+  label: 'link2天涯处理工作如何',
+},
+{
+  id: '22',
+  label: 'link2天涯处理工作如何',
+},
+{
+  id: '23',
+  label: 'link2天涯处理工作如何',
+},
+{
+  id: '24',
+  label: 'link2天涯处理工作如何',
 },
 {
   id: '3',
-  label: 'link3',
+  label: 'link2天涯处理工作如何',
+},
+{
+  id: '31',
+  label: 'link2天涯处理工作如何',
+},
+{
+  id: '32',
+  label: 'link2天涯处理工作如何',
+},
+{
+  id: '33',
+  label: 'link2天涯处理工作如何',
 },
 {
   id: '4',
-  label: 'link4',
+  label: 'link2天涯处理工作如何',
 }
 ]
 class WGroupRepoPage extends React.Component {
@@ -177,7 +208,7 @@ class WGroupRepoPage extends React.Component {
       <div style={ styles.root }>
         <div style={ styles.leftPanel }>
           <div>
-            <IconButton onTouchTap={this.handleRepoTreeTouchTap}>
+            <IconButton onTouchTap={this.handleRepoTreeTouchTap} iconStyle={styles.iconStyle}>
               <FileFolderOpen/>
             </IconButton>
             <Popover
@@ -186,10 +217,13 @@ class WGroupRepoPage extends React.Component {
               anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
               targetOrigin={{horizontal: 'left', vertical: 'top'}}
               onRequestClose={this.handleRepoTreeRequestClose}
-              style={styles.popOver}>
+              style={styles.popover}>
               <TreeList nodeIcon={this.nodeIcon} nodes={nodes} muiTheme={this.props.muiTheme}/>
             </Popover>
             <Breadcrumb items={links} onJumpClick={this.handJumpLink} style={{verticalAlign:'top', display:'inline-block'}} muiTheme={this.props.muiTheme}/>
+            <IconButton onTouchTap={ console.log('--')} style={{float:'right'}} iconStyle={styles.iconStyle}>
+              <FileFolderOpen/>
+            </IconButton>
           </div>
 
           <Table multiSelectable={true}>

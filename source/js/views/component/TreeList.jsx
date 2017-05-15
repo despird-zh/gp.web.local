@@ -81,7 +81,7 @@ class TreeNode extends React.Component {
 
     const hoverIconStyle = {
       cursor: 'pointer',
-      color: hoverIcon ? palette.primary3Color : palette.primary2Color
+      color: hoverIcon ? palette.primary3Color : palette.primary1Color
     };
 
     if(node.expanded && node.children){

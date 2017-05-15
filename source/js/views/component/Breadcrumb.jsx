@@ -26,7 +26,7 @@ const getStyles = function(muiTheme){
       textDecoration: 'none',
       display: 'inline-block',
       verticalAlign: 'middle',
-      color: baseTheme.palette.primary1Color,
+      color: baseTheme.palette.primary2Color,
       cursor: 'pointer',
       overflow: 'hidden',
       whiteSpace:'nowrap',
@@ -39,8 +39,8 @@ const getStyles = function(muiTheme){
       cursor: 'default',
     },
     arrowStyle: {
-      color: baseTheme.palette.primary1Color,
-      fill: baseTheme.palette.primary1Color,
+      color: baseTheme.palette.primary2Color,
+      fill: baseTheme.palette.primary2Color,
       verticalAlign: 'middle',
       width: 18,
       height: 18

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import ActDescription from 'material-ui/svg-icons/action/description';
 import IconButton from 'material-ui/IconButton';
 import FileFolderOpen from 'material-ui/svg-icons/file/folder-open';
+import NaviExpandMore from 'material-ui/svg-icons/navigation/expand-more';
+import NaviExpandLess from 'material-ui/svg-icons/navigation/expand-less';
 import Popover from 'material-ui/Popover';
 import {
   Table,
@@ -45,7 +47,7 @@ function getStyles(muiTheme) {
       flexBasis: 300,
     },
     iconStyle:{
-      color: baseTheme.palette.primary1Color
+      color: baseTheme.palette.primary2Color
     },
     popover:{
       padding:10, 
@@ -222,16 +224,16 @@ class WGroupRepoPage extends React.Component {
             </Popover>
             <Breadcrumb items={links} onJumpClick={this.handJumpLink} style={{verticalAlign:'top', display:'inline-block'}} muiTheme={this.props.muiTheme}/>
             <IconButton onTouchTap={ console.log('--')} style={{float:'right'}} iconStyle={styles.iconStyle}>
-              <FileFolderOpen/>
+              <NaviExpandMore/>
             </IconButton>
           </div>
 
           <Table multiSelectable={true}>
             <TableHeader>
               <TableRow>
-                <TableHeaderColumn>ID</TableHeaderColumn>
-                <TableHeaderColumn>Name</TableHeaderColumn>
-                <TableHeaderColumn>Status</TableHeaderColumn>
+                //<TableHeaderColumn>ID</TableHeaderColumn>
+                //<TableHeaderColumn>Name</TableHeaderColumn>
+                //<TableHeaderColumn>Status</TableHeaderColumn>
               </TableRow>
             </TableHeader>
             <TableBody>

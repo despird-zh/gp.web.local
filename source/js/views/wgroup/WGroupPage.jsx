@@ -26,8 +26,8 @@ const allPages = {
     visible: true,
     disabled: false,
   },
-  demo: {
-    path: '/wgroup/demo/',
+  repo: {
+    path: '/wgroup/repo/',
     title: 'Repository',
     icon: <ActCaseHub />,
     description: 'The content of workgroup repository ',

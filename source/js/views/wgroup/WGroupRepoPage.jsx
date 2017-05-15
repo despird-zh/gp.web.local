@@ -14,6 +14,7 @@ import {
 } from 'material-ui/Table';
 import TreeList from '../component/TreeList';
 import AuthConnect from '../component/AuthConnect';
+import Breadcrumb from '../component/Breadcrumb';
 import WGroupProfileLite from './WGroupProfileLite';
 
 function getStyles(muiTheme) {
@@ -98,7 +99,25 @@ var nodes = [
   }
 ];
 
-class WGroupDemoPage extends React.Component {
+const links = [
+{
+  id: '1',
+  label: 'link1',
+},
+{
+  id: '2',
+  label: 'link2 天涯 处理工作 如何',
+},
+{
+  id: '3',
+  label: 'link3',
+},
+{
+  id: '4',
+  label: 'link4',
+}
+]
+class WGroupRepoPage extends React.Component {
 
   constructor(props) {
     super(props);
@@ -107,7 +126,7 @@ class WGroupDemoPage extends React.Component {
   }
 
   componentWillMount() {
-    if (this.props.setCurrentPage) { this.props.setCurrentPage('demo'); }
+    if (this.props.setCurrentPage) { this.props.setCurrentPage('repo'); }
   }
 
   componentDidMount () {
@@ -146,10 +165,13 @@ class WGroupDemoPage extends React.Component {
     }
   }
 
+  handJumpLink = (linkItem) => {
+    console.log(linkItem)
+  }
   render() {
     const styles = this.styles;
     const {openRepoTree} = this.state;
-    console.log(this.props.muiTheme)
+
     return (
 
       <div style={ styles.root }>
@@ -158,16 +180,18 @@ class WGroupDemoPage extends React.Component {
             <IconButton onTouchTap={this.handleRepoTreeTouchTap}>
               <FileFolderOpen/>
             </IconButton>
+            <Popover
+              open={this.state.openRepoTree}
+              anchorEl={this.state.openRepoTreeAnchorEl}
+              anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+              targetOrigin={{horizontal: 'left', vertical: 'top'}}
+              onRequestClose={this.handleRepoTreeRequestClose}
+              style={styles.popOver}>
+              <TreeList nodeIcon={this.nodeIcon} nodes={nodes} muiTheme={this.props.muiTheme}/>
+            </Popover>
+            <Breadcrumb items={links} onJumpClick={this.handJumpLink} style={{verticalAlign:'top', display:'inline-block'}} muiTheme={this.props.muiTheme}/>
           </div>
-          <Popover
-            open={this.state.openRepoTree}
-            anchorEl={this.state.openRepoTreeAnchorEl}
-            anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-            targetOrigin={{horizontal: 'left', vertical: 'top'}}
-            onRequestClose={this.handleRepoTreeRequestClose}
-            style={styles.popOver}>
-            <TreeList nodeIcon={this.nodeIcon} nodes={nodes} muiTheme={this.props.muiTheme}/>
-          </Popover> 
+
           <Table multiSelectable={true}>
             <TableHeader>
               <TableRow>
@@ -211,13 +235,13 @@ class WGroupDemoPage extends React.Component {
   }
 }
 
-WGroupDemoPage.propTypes = {
+WGroupRepoPage.propTypes = {
   setCurrentPage: PropTypes.func,
   muiTheme: PropTypes.object,
 };
 
 const NewComponent = AuthConnect(
-  WGroupDemoPage,
+  WGroupRepoPage,
   (state) => ({
     wgrouplist: state.wgroup.get('wgrouplist'),
   }),

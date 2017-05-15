@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import HWKeyArrowRight from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
+import Tooltip from 'material-ui/internal/Tooltip';
 
 const getStyles = function(muiTheme){
   const {baseTheme} = muiTheme;
@@ -17,6 +18,7 @@ const getStyles = function(muiTheme){
       fontSize: 16,
       lineHeight: 1.4,
       textAlign: 'left',
+      position: 'relative'
     },
     itemLink: {
       textDecoration: 'none',
@@ -79,19 +81,42 @@ class Breadcrumb extends React.Component {
   }
 }
 
-const BreadcrumbItem = ({itemData, itemStyle, linkStyle, iconStyle, index, callback }) => {
+class BreadcrumbItem extends React.Component{
 
-  let handleClick = ()=>{
-    if(callback){
-      callback(itemData);
+  constructor(props) {
+    super(props);
+    this.state = {
+      showTooltip: false,
     }
   }
-  return (
-    <li key={ `litem-${itemData.id}`} style={itemStyle}>
-      { (index !== 0) && <HWKeyArrowRight style={iconStyle}/>}
-      <a style={linkStyle} onClick={ handleClick }>{ itemData.label }</a>
-    </li>
-  );
+
+  handleClick = ()=>{
+    if(this.props.callback){
+      this.props.callback(this.props.itemData);
+    }
+  }
+
+  render(){
+
+    let {itemData, itemStyle, linkStyle, iconStyle, index, callback } = this.props;
+
+    return (
+      <li key={ `litem-${itemData.id}`} style={itemStyle}>
+        { (index !== 0) && <HWKeyArrowRight style={iconStyle}/>}
+        <a style={linkStyle} 
+        onClick={ this.handleClick }
+        onMouseEnter={()=>{this.setState({showTooltip: true})}}
+        onMouseLeave={()=>{this.setState({showTooltip: false})}}
+        >{ itemData.label }</a>
+        <Tooltip show={ this.state.showTooltip }
+           label={itemData.label}
+           style={{left: 5, bottom:10}}
+           horizontalPosition="right"
+           verticalPosition="top"
+           touch={true}/>
+      </li>
+    );
+  }
 }
 
 export default Breadcrumb;

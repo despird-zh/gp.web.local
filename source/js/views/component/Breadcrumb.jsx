@@ -110,7 +110,7 @@ class BreadcrumbItem extends React.Component{
         >{ itemData.label }</a>
         <Tooltip show={ this.state.showTooltip }
            label={itemData.label}
-           style={{left: 5, bottom:10}}
+           style={{ left: 5, bottom:10 }}
            horizontalPosition="right"
            verticalPosition="top"
            touch={true}/>

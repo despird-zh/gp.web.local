@@ -287,7 +287,7 @@ class WGroupRepoPage extends React.Component {
     const rowEls = rows.map((row, index) => {
       let filterRows = selectedRows.filter( i => (i === index) );
       return (
-        <TableRow  key={`tr-${row.id}`} selected={ filterRows && filterRows.length > 0}>
+        <TableRow key={`tr-${row.id}`} selected={ filterRows && filterRows.length > 0}>
           <TableRowColumn style={styles.column}>
           <div style={{display: 'flex', verticalAlign:'middle'}}>
             <div style={{flex: '0 0 30px', verticalAlign:'middle' }}>

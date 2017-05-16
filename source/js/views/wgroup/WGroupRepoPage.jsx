@@ -14,7 +14,7 @@ import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import Divider from 'material-ui/Divider';
 import MenuItem from 'material-ui/MenuItem';
-
+import Avatar from 'material-ui/Avatar';
 import {
   Table,
   TableBody,
@@ -60,6 +60,22 @@ function getStyles(muiTheme) {
     },
     column: {
       padding: 5,
+    },
+    colname: {
+      padding: 5,
+    },
+    colauthor: {
+      padding: 5,
+      textAlign:'center',
+      width:60
+    },
+    colaction: {
+      padding: 5,
+      width:160
+    },
+    colsum: {
+      padding: 5,
+      width:160
     },
     rightPanel: {
       paddingLeft: 10,
@@ -275,6 +291,10 @@ class WGroupRepoPage extends React.Component {
     this.setState({selectedRows: _selectedRows});
   }
 
+  handleRepoLink = (evt) => {
+    evt.preventDefault();
+    console.log(evt);
+  }
   render() {
     const styles = this.styles;
 
@@ -288,7 +308,7 @@ class WGroupRepoPage extends React.Component {
       let filterRows = selectedRows.filter( i => (i === index) );
       return (
         <TableRow key={`tr-${row.id}`} selected={ filterRows && filterRows.length > 0}>
-          <TableRowColumn style={styles.column}>
+          <TableRowColumn style={styles.colname}>
           <div style={{display: 'flex', verticalAlign:'middle'}}>
             <div style={{flex: '0 0 30px', verticalAlign:'middle' }}>
               <span style={{display:'inline-block', height:'100%', verticalAlign:'middle'}}/>
@@ -296,8 +316,8 @@ class WGroupRepoPage extends React.Component {
             </div>
           <div style={{ flex:1 , overflow: 'hidden'}}>
             <a style={{ textDecoration: 'none', display: 'block',overflow: 'hidden',
-              whiteSpace: 'nowrap',
-              textOverflow: 'ellipsis'}}>
+              whiteSpace: 'nowrap', cursor: 'pointer',
+              textOverflow: 'ellipsis'}} onTouchTap={this.handleRepoLink}>
              <span> {row.name}what is the best choice.</span>
             </a>
             <span style={{display: 'block',overflow: 'hidden',
@@ -308,8 +328,11 @@ class WGroupRepoPage extends React.Component {
           </div>
           </div>
           </TableRowColumn>
-          <TableRowColumn style={styles.column}> 3 folders, 12 files 1.3G</TableRowColumn>
-          <TableRowColumn style={styles.column}>{row.label}</TableRowColumn>
+          <TableRowColumn style={styles.colauthor}>
+            <Avatar src="assets/img/kerem-128.jpg" size={30} style={{ verticalAlign:'middle'}} />
+          </TableRowColumn>
+          <TableRowColumn style={styles.colsum}> 3 folders, 12 files 1.3G</TableRowColumn>
+          <TableRowColumn style={styles.colaction}>{row.label}</TableRowColumn>
         </TableRow>
       );
     });
@@ -368,9 +391,10 @@ class WGroupRepoPage extends React.Component {
             onRowSelection={this.handleRowSelection}>
             <TableHeader enableSelectAll={true}>
               <TableRow>
-                <TableHeaderColumn style={styles.column}>ID</TableHeaderColumn>
-                <TableHeaderColumn style={styles.column}>Name</TableHeaderColumn>
-                <TableHeaderColumn style={styles.column}>Status</TableHeaderColumn>
+                <TableHeaderColumn style={styles.colname}>Name</TableHeaderColumn>
+                <TableHeaderColumn style={styles.colauthor}>Author</TableHeaderColumn>
+                <TableHeaderColumn style={styles.colsum}>Summary</TableHeaderColumn>
+                <TableHeaderColumn style={styles.colaction}>Actions</TableHeaderColumn>
               </TableRow>
             </TableHeader>
             <TableBody deselectOnClickaway={false}>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ActDescription from 'material-ui/svg-icons/action/description';
 import ActSearch from 'material-ui/svg-icons/action/search';
 import CtntClear from 'material-ui/svg-icons/content/clear';
+import FileFolder from 'material-ui/svg-icons/file/folder';
 import IconButton from 'material-ui/IconButton';
 import FileFolderOpen from 'material-ui/svg-icons/file/folder-open';
 import NaviExpandMore from 'material-ui/svg-icons/navigation/expand-more';
@@ -13,6 +14,7 @@ import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import Divider from 'material-ui/Divider';
 import MenuItem from 'material-ui/MenuItem';
+
 import {
   Table,
   TableBody,
@@ -67,6 +69,10 @@ function getStyles(muiTheme) {
     },
     iconStyle:{
       color: baseTheme.palette.primary2Color
+    },
+    rowIconStyle:{
+      color: baseTheme.palette.primary2Color,
+      verticalAlign:'middle'
     },
     popover:{
       padding:10, 
@@ -180,27 +186,27 @@ class WGroupRepoPage extends React.Component {
       selectedRows:[],
       rows: [{
         id: '1',
-        name: 'hallo',
+        name: '长亮供应链金融系统解决方案',
         label: 'label'
       },{
         id: '2',
-        name: 'hallo',
+        name: '长亮供应链金融系统解决方案.pdf',
         label: 'label'
       },{
         id: '3',
-        name: 'hallo',
+        name: '长亮供应链金融系统解决方案.pdf',
         label: 'label'
       },{
         id: '4',
-        name: 'hallo',
+        name: '长亮供应链金融系统解决方案.pdf',
         label: 'label'
       },{
         id: '6',
-        name: 'hallo',
+        name: '长亮供应链金融系统解决方案.pdf',
         label: 'label'
       },{
         id: '5',
-        name: 'hallo',
+        name: '长亮供应链金融系统解决方案.pdf',
         label: 'label'
       },
       ]
@@ -281,11 +287,30 @@ class WGroupRepoPage extends React.Component {
     const rowEls = rows.map((row, index) => {
       let filterRows = selectedRows.filter( i => (i === index) );
       return (
-              <TableRow  key={`tr-${row.id}`} selected={ filterRows && filterRows.length > 0}>
-                <TableRowColumn>{row.id}</TableRowColumn>
-                <TableRowColumn>{row.name}</TableRowColumn>
-                <TableRowColumn>{row.label}</TableRowColumn>
-              </TableRow>
+        <TableRow  key={`tr-${row.id}`} selected={ filterRows && filterRows.length > 0}>
+          <TableRowColumn style={styles.column}>
+          <div style={{display: 'flex', verticalAlign:'middle'}}>
+            <div style={{flex: '0 0 30px', verticalAlign:'middle' }}>
+              <span style={{display:'inline-block', height:'100%', verticalAlign:'middle'}}/>
+              <FileFolder style={styles.rowIconStyle}/>
+            </div>
+          <div style={{ flex:1 , overflow: 'hidden'}}>
+            <a style={{ textDecoration: 'none', display: 'block',overflow: 'hidden',
+              whiteSpace: 'nowrap',
+              textOverflow: 'ellipsis'}}>
+             <span> {row.name}what is the best choice.</span>
+            </a>
+            <span style={{display: 'block',overflow: 'hidden',
+              whiteSpace: 'nowrap',
+              textOverflow: 'ellipsis'}}>
+              {row.name} what is the best choice.
+            </span>
+          </div>
+          </div>
+          </TableRowColumn>
+          <TableRowColumn style={styles.column}> 3 folders, 12 files 1.3G</TableRowColumn>
+          <TableRowColumn style={styles.column}>{row.label}</TableRowColumn>
+        </TableRow>
       );
     });
 
@@ -343,9 +368,9 @@ class WGroupRepoPage extends React.Component {
             onRowSelection={this.handleRowSelection}>
             <TableHeader enableSelectAll={true}>
               <TableRow>
-                <TableHeaderColumn>ID</TableHeaderColumn>
-                <TableHeaderColumn>Name</TableHeaderColumn>
-                <TableHeaderColumn>Status</TableHeaderColumn>
+                <TableHeaderColumn style={styles.column}>ID</TableHeaderColumn>
+                <TableHeaderColumn style={styles.column}>Name</TableHeaderColumn>
+                <TableHeaderColumn style={styles.column}>Status</TableHeaderColumn>
               </TableRow>
             </TableHeader>
             <TableBody deselectOnClickaway={false}>

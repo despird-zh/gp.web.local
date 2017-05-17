@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ActDeviceHub from 'material-ui/svg-icons/hardware/device-hub';
 import ActCaseHub from 'material-ui/svg-icons/hardware/cast';
 import ActCastCntHub from 'material-ui/svg-icons/hardware/cast-connected';
+import ComunChat from 'material-ui/svg-icons/communication/chat';
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
@@ -12,17 +13,17 @@ import PageHeader from '../component/PageHeader';
 const allPages = {
   topic: {
     path: '/wgroup/topic/',
-    title: 'Workgroup Topic',
+    title: 'Topic',
     icon: <ActCastCntHub />,
     description: 'Review the information of System',
     visible: true,
     disabled: false,
   },
-  demo1: {
-    path: '/wgroup/demo1/',
-    title: 'Workgroup Edit',
-    icon: <ActCaseHub />,
-    description: 'Review the information of System',
+  bulletin: {
+    path: '/wgroup/bulletin/',
+    title: 'Bulletin',
+    icon: <ComunChat />,
+    description: 'Review the message of group',
     visible: true,
     disabled: false,
   },
@@ -48,7 +49,7 @@ class WGroupPage extends React.Component {
 
   setVisible = (currentPage, pages) => {
     if (currentPage !== 'demo1') {
-      pages.demo1.visible = false; // eslint-disable-line
+      //pages.demo1.visible = false; // eslint-disable-line
     }
   }
 

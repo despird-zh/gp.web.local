@@ -142,9 +142,10 @@ class TableBody extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    let selectedRows= this.getSelectedRows(nextProps);
     if (this.props.allRowsSelected !== nextProps.allRowsSelected) {
-      console.log(nextProps.children.length +'/'+ this.state.selectedRows.length)
-      if (!nextProps.allRowsSelected && (nextProps.children.length === this.state.selectedRows.length)) {
+
+      if (!nextProps.allRowsSelected && (nextProps.children.length === selectedRows.length)) {
         this.setState({
           selectedRows: [],
         });
@@ -153,7 +154,7 @@ class TableBody extends Component {
     }
 
     this.setState({
-      selectedRows: this.getSelectedRows(nextProps),
+      selectedRows
     });
   }
 
@@ -340,10 +341,10 @@ class TableBody extends Component {
     }
 
     if (!this.isControlled) {
-      console.log(selectedRows.length)
+      
       this.setState({selectedRows});
     }
-
+    console.log('--row click'+selectedRows.length)
     if (this.props.onRowSelection) {
       this.props.onRowSelection(this.flattenRanges(selectedRows));
     }
@@ -452,7 +453,6 @@ class TableBody extends Component {
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
-    console.log(this.state.selectedRows);
     return (
       <ClickAwayListener onClickAway={this.handleClickAway}>
         <tbody style={prepareStyles(Object.assign({}, style))} {...other}>

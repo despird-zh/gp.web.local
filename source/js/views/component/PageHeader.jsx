@@ -10,6 +10,7 @@ function getStyles(muiTheme) {
   return {
     root: {
       width: '100%',
+      height: '100%'
     },
     container: {
       paddingTop: 10,

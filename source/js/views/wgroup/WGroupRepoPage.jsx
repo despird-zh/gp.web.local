@@ -22,7 +22,7 @@ import {
   TableHeaderColumn,
   TableRow,
   TableRowColumn,
-} from 'material-ui/Table';
+} from '../component/Table';
 import TreeList from '../component/TreeList';
 import AuthConnect from '../component/AuthConnect';
 import Breadcrumb from '../component/Breadcrumb';
@@ -279,6 +279,7 @@ class WGroupRepoPage extends React.Component {
   }
 
   handleRowSelection = (selrows) => {
+
     let _selectedRows = [];
     if( (typeof selrows === 'string') && selrows === 'all'){
       _selectedRows = this.state.rows.map((row, index) => { return index });
@@ -289,11 +290,14 @@ class WGroupRepoPage extends React.Component {
     }
 
     this.setState({selectedRows: _selectedRows});
+
   }
 
-  handleRepoLink = (evt) => {
-    evt.preventDefault();
-    console.log(evt);
+  handleRepoLink = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+    console.log('- repo link' + new Date());
   }
   render() {
     const styles = this.styles;
@@ -304,28 +308,43 @@ class WGroupRepoPage extends React.Component {
 
     const hasSelected = selectedRows && selectedRows.length > 0;
 
+    const hRowEls = !hasSelected ? (<TableRow>
+                <TableHeaderColumn style={styles.colname}>Name</TableHeaderColumn>
+                <TableHeaderColumn style={styles.colauthor}>Author</TableHeaderColumn>
+                <TableHeaderColumn style={styles.colsum}>Summary</TableHeaderColumn>
+                <TableHeaderColumn style={styles.colaction}>Actions</TableHeaderColumn>
+              </TableRow>) :
+               (<TableRow>
+                <TableHeaderColumn style={styles.column} colSpan={4}>
+                  <RaisedButton label='Clear' style={ { margin: 4 } } onTouchTap={ this.handleClear } />
+                </TableHeaderColumn>
+                </TableRow>);
+
     const rowEls = rows.map((row, index) => {
+
       let filterRows = selectedRows.filter( i => (i === index) );
+
       return (
-        <TableRow key={`tr-${row.id}`} selected={ filterRows && filterRows.length > 0}>
+        <TableRow key={`tr-${row.id}`} selected={ filterRows && filterRows.length > 0} selectable={true}>
           <TableRowColumn style={styles.colname}>
           <div style={{display: 'flex', verticalAlign:'middle'}}>
             <div style={{flex: '0 0 30px', verticalAlign:'middle' }}>
               <span style={{display:'inline-block', height:'100%', verticalAlign:'middle'}}/>
               <FileFolder style={styles.rowIconStyle}/>
             </div>
-          <div style={{ flex:1 , overflow: 'hidden'}}>
-            <a style={{ textDecoration: 'none', display: 'block',overflow: 'hidden',
-              whiteSpace: 'nowrap', cursor: 'pointer',
-              textOverflow: 'ellipsis'}} onTouchTap={this.handleRepoLink}>
-             <span> {row.name}what is the best choice.</span>
-            </a>
-            <span style={{display: 'block',overflow: 'hidden',
-              whiteSpace: 'nowrap',
-              textOverflow: 'ellipsis'}}>
-              {row.name} what is the best choice.
-            </span>
-          </div>
+            <div style={{ flex:1 , overflow: 'hidden'}}>
+              <a style={{ textDecoration: 'none', display: 'block',overflow: 'hidden',
+                whiteSpace: 'nowrap', cursor: 'pointer',
+                textOverflow: 'ellipsis'}} 
+                onClick={this.handleRepoLink}>
+               <span> {row.name}what is the best choice.</span>
+              </a>
+              <span style={{display: 'block',overflow: 'hidden',
+                whiteSpace: 'nowrap',
+                textOverflow: 'ellipsis'}}>
+                {row.name} what is the best choice.
+              </span>
+            </div>
           </div>
           </TableRowColumn>
           <TableRowColumn style={styles.colauthor}>
@@ -380,24 +399,12 @@ class WGroupRepoPage extends React.Component {
               <IconButton iconStyle={styles.iconStyle}><CtntClear/></IconButton>
             </div>
           </div>
-          <div>
-            <RaisedButton label='Clear' style={ { margin: 4 } } onTouchTap={ this.handleClear } disabled={hasSelected} />
-            <RaisedButton label='Clear' style={ { margin: 4 } } onTouchTap={ this.handleClear } />
-            <RaisedButton label='Clear' style={ { margin: 4 } } onTouchTap={ this.handleClear } />
-            <Divider style={{marginTop:10}}/>
-          </div>
           <Table multiSelectable={true}
-            selectable= {true}
             onRowSelection={this.handleRowSelection}>
             <TableHeader enableSelectAll={true}>
-              <TableRow>
-                <TableHeaderColumn style={styles.colname}>Name</TableHeaderColumn>
-                <TableHeaderColumn style={styles.colauthor}>Author</TableHeaderColumn>
-                <TableHeaderColumn style={styles.colsum}>Summary</TableHeaderColumn>
-                <TableHeaderColumn style={styles.colaction}>Actions</TableHeaderColumn>
-              </TableRow>
+              {hRowEls}
             </TableHeader>
-            <TableBody deselectOnClickaway={false}>
+            <TableBody deselectOnClickaway={false} preScanRows={true}>
               {rowEls}
             </TableBody>
           </Table>

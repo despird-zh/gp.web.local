@@ -37,7 +37,7 @@ const rightIconMenu = (
 
 function getStyles(muiTheme) {
   const { baseTheme } = muiTheme;
-  console.log(baseTheme);
+
   return {
     descr: {
       lineHeight: 1.3,

@@ -7,7 +7,6 @@ import Popover from 'material-ui/Popover';
 
 const getStyles = function(muiTheme){
   const {baseTheme} = muiTheme;
-  console.log(baseTheme)
   return {
     container:{
       padding:'12px 0',

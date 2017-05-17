@@ -39,6 +39,10 @@ function getStyles(muiTheme) {
       flex: 1,
       paddingRight: 10,
     },
+    topicTitle:{
+      textDecoration: 'none', 
+      color: baseTheme.palette.primary1Color
+    },
     column: {
       padding: 5,
     },
@@ -111,7 +115,7 @@ class WGroupTopicsPage extends React.Component {
               <TableRow>
                 <TableRowColumn style={ styles.column }>
                   <span style={ { fontSize: 14, fontWeight: 600 } }>
-                    <a href='/slsl' style={ { textDecoration: 'none', color: darkBlack } }>如何构建一个出色的应用特别是SPA?</a>
+                    <a href='/slsl' style={ styles.topicTitle }>如何构建一个出色的应用特别是SPA?</a>
                   </span>
                   <div style={ { fontSize: 14, color: '#919191', wordBreak: 'break-all', wordWrap: 'break-word', lineHeight: 1.4, whiteSpace: 'normal', paddingRight: 5 } }>
                     <span>在 HTML 4.01 中，不赞成使用 td 元素的 nowrap 属性；在 XHTML 1.0 Strict DTD 中，不支持 td 元素的 nowrap 属性。
@@ -135,7 +139,7 @@ class WGroupTopicsPage extends React.Component {
               <TableRow>
                 <TableRowColumn style={ styles.column }>
                   <span style={ { fontSize: 14, fontWeight: 600 } }>
-                    <a href='/lklk' style={ { textDecoration: 'none', color: darkBlack } }>Any good library in React for building DockSpawn style windows on an SPA?</a>
+                    <a href='/lklk' style={ styles.topicTitle }>Any good library in React for building DockSpawn style windows on an SPA?</a>
                   </span>
                 </TableRowColumn>
                 <TableRowColumn style={ cateCol }>

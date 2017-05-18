@@ -63,7 +63,7 @@ class App extends Component {
 
     if (this.pageContent && this.pageBody) {
       this.pageBody.style.minHeight = `${ outerHeight - 60 }px`;
-      this.pageContent.style.height = `${ outerHeight - 124 }px`;
+      this.pageContent.style.minHeight = `${ outerHeight - 124 }px`;
     }
   }
 

@@ -6,13 +6,11 @@ import WGroupProfileLite from './WGroupProfileLite';
 
 function getStyles(muiTheme) {
   const { baseTheme } = muiTheme;
-  console.log(baseTheme);
   return {
     root: {
       display: 'flex',
       position: 'relative',
       marginTop: 10,
-      height: '100%'
     },
     leftPanel: {
       flex: 1,
@@ -45,7 +43,7 @@ class WGroupBulletinPage extends React.Component {
     const styles = this.styles;
 
     return (
-      <div style={ styles.root }>
+      <div style={ Object.assign(this.props.style, styles.root) }>
         <div style={ styles.leftPanel }>
         <div style={{ width:'100%'}}>
 

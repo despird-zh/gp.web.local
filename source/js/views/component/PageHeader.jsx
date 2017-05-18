@@ -10,13 +10,21 @@ function getStyles(muiTheme) {
   return {
     root: {
       width: '100%',
-      height: '100%'
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'column'
     },
-    container: {
+    topContainer: {
       paddingTop: 10,
       width: '100%',
       display: 'flex',
       color: baseTheme.palette.textColor,
+      flexBasis: 58,
+      flexGrow: 0,
+      flexShrink: 0,
+    },
+    pageBody:{
+      flex: 1,
     },
     title: {
       marginTop: 10,
@@ -108,16 +116,17 @@ class PageHeader extends React.Component {
 
     return (
       <div style={ this.styles.root }>
-        <div style={ this.styles.container }>
+        <div style={ this.styles.topContainer }>
           { title }
           <div>
             {buttons}
           </div>
         </div>
-        <Divider />
+        <Divider/>
         {this.props.children && React.cloneElement(this.props.children, {
           setCurrentPage: this.setCurrentPage,
           muiTheme: this.props.muiTheme,
+          style: this.styles.pageBody
         })}
       </div>
     );

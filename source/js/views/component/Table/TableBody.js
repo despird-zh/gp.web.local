@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Checkbox from 'material-ui/Checkbox';
-import TableRowColumn from './TableRowColumn';
+import TableRowColumn from 'material-ui/Table/TableRowColumn';
 import ClickAwayListener from 'material-ui/internal/ClickAwayListener';
 
 class TableBody extends Component {

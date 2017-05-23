@@ -17,12 +17,12 @@ import MenuItem from 'material-ui/MenuItem';
 import Avatar from 'material-ui/Avatar';
 import {
   Table,
-  TableBody,
   TableHeader,
   TableHeaderColumn,
   TableRow,
   TableRowColumn,
-} from '../component/Table';
+} from 'material-ui/Table';
+import TableBody from '../component/Table/TableBody';
 import TreeList from '../component/TreeList';
 import AuthConnect from '../component/AuthConnect';
 import Breadcrumb from '../component/Breadcrumb';

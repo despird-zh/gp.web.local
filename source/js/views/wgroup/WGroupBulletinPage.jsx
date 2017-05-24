@@ -18,7 +18,7 @@ function getStyles(muiTheme) {
     leftPanel: {
       flex: 1,
       paddingRight: 10,
-      backgroundColor: '#e5e5e5'
+      backgroundColor: '#e4e4e4'
     },
     rightPanel: {
       paddingLeft: 10,
@@ -99,7 +99,7 @@ class WGroupBulletinPage extends React.Component {
 
     return (
       <div style={ Object.assign(this.props.style, styles.root) }>
-        <div className={'chat'} style={styles.chat}>
+        <div className={'chat'} style={styles.leftPanel}>
           <ul style={ styles.chatList }>
             <li style={ styles.chatRow } className={'other'}>
               <div style={ styles.chatSide }>

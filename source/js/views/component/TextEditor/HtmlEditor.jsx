@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EditAttatchFile from 'material-ui/svg-icons/editor/attatch-file';
+import EditAttachFile from 'material-ui/svg-icons/editor/attach-file';
 import EditInsertPhoto from 'material-ui/svg-icons/editor/insert-photo';
 import { Editor, EditorState, RichUtils } from 'draft-js';
 import EditorStyle from './HtmlEditor.scss';

@@ -11,6 +11,14 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 import PageHeader from '../component/PageHeader';
 
 const allPages = {
+  gridlist: {
+    path: '/wgroup/gridlist/',
+    title: 'Workgroups',
+    icon: <ActCastCntHub />,
+    description: 'The work groups',
+    visible: true,
+    disabled: false,
+  },
   topic: {
     path: '/wgroup/topic/',
     title: 'Topic',

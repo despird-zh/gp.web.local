@@ -12,6 +12,7 @@ import WGroupTopicsPage from './views/wgroup/WGroupTopicsPage';
 import WGroupTopicPage from './views/wgroup/WGroupTopicPage';
 import WGroupRepoPage from './views/wgroup/WGroupRepoPage';
 import WGroupBulletinPage from './views/wgroup/WGroupBulletinPage';
+import WGroupGridListPage from './views/wgroup/WGroupGridListPage';
 
 export const getRoutes = (store) => {
   const ensureAuthenticated = (nextState, replace) => { // eslint-disable-line no-unused-vars
@@ -44,6 +45,7 @@ export const getRoutes = (store) => {
         <Route path='topic' component={ WGroupTopicPage } />
         <Route path='repo' component={ WGroupRepoPage } />
         <Route path='bulletin' component={ WGroupBulletinPage } />
+        <Route path='gridlist' component={ WGroupGridListPage } />
       </Route>
     </Route>
   );

@@ -54,15 +54,14 @@ class PageHeader extends React.Component {
     this.allPages = props.pages;
   }
 
-  setCurrentPage = (pageName, extinfo) => {
+  setCurrentPage = (pageName, { title = '', buttons } = {}) => {
     let currentPage = null;
     let key;
-    const ext = (extinfo) ? { ext: extinfo.title } : { ext: '' };
     for (key of Object.keys(this.allPages)) {
       if (pageName === key) {
         this.allPages[key].disabled = true;
         this.allPages[key].visible = true;
-        this.allPages[key] = Object.assign(this.allPages[key], ext);
+        this.allPages[key] = Object.assign(this.allPages[key], { ext: title });
         currentPage = this.allPages[key];
       } else {
         this.allPages[key].disabled = false;
@@ -71,8 +70,6 @@ class PageHeader extends React.Component {
     }
 
     if (this.props.setVisible) this.props.setVisible(pageName, this.allPages);
-
-    const buttons = (extinfo) ? extinfo.buttons : undefined;
 
     const state = { pages: Object.values(this.allPages), buttons, currentPage };
     this.setState(state);

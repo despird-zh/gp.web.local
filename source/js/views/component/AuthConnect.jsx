@@ -14,7 +14,7 @@ import { openSignin,
  * stateMap is the normal map of state
  * actions is the object of actions to be mapped
  */
-export default (ComposedComponent, stateMap, actions) => {
+export default (ComposedComponent, stateMap = () => {}, actions = {}) => {
   class NewComponent extends React.Component {
 
     constructor(props) {

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Avatar from 'material-ui/Avatar';
 
 import AuthConnect from '../component/AuthConnect';
+import HtmlEditor from '../component/TextEditor/HtmlEditor';
 import WGroupProfileLite from './WGroupProfileLite';
 import PageStyle from './WGroupBulletinPage.scss';
 
@@ -17,8 +18,10 @@ function getStyles(muiTheme) {
     },
     leftPanel: {
       flex: 1,
+      display: 'flex',
+      flexDirection: 'column',
       paddingRight: 10,
-      backgroundColor: '#e4e4e4'
+      
     },
     rightPanel: {
       paddingLeft: 10,
@@ -99,7 +102,8 @@ class WGroupBulletinPage extends React.Component {
 
     return (
       <div style={ Object.assign(this.props.style, styles.root) }>
-        <div className={'chat'} style={styles.leftPanel}>
+        <div style={styles.leftPanel}>
+          <div  className={'chat'} style={{flex: 1,backgroundColor: '#e4e4e4'}}>
           <ul style={ styles.chatList }>
             <li style={ styles.chatRow } className={'other'}>
               <div style={ styles.chatSide }>
@@ -170,7 +174,11 @@ class WGroupBulletinPage extends React.Component {
               </div>
             </li>
           </ul>
-
+          </div>
+          <div style={{flexBasis:200, flexGrow:0 , flexShrink:0}}>
+            <HtmlEditor>
+            </HtmlEditor>
+          </div>
         </div>
         <WGroupProfileLite muiTheme={ this.props.muiTheme } style={ styles.rightPanel } />
       </div>
